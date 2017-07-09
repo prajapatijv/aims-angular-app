@@ -1,0 +1,1711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AIMS_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BillSequence">
+          <Key>
+            <PropertyRef Name="dtadat" />
+            <PropertyRef Name="ter_id" />
+          </Key>
+          <Property Name="dtadat" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ter_id" Type="smallint" Nullable="false" />
+          <Property Name="seq" Type="smallint" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="shortname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="actv_fg" Type="bit" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'AIMS_DB.dbo.Denoms' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Denoms">
+          <Property Name="denom_id" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="Descr" Type="varchar" MaxLength="60" />
+          <Property Name="denom_struc" Type="numeric" Precision="4" Scale="0" />
+        </EntityType>-->
+        <EntityType Name="EventMast">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="shortname" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="actv_fg" Type="bit" />
+          <Property Name="location_id" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="fdat" Type="datetime" />
+          <Property Name="tdat" Type="datetime" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="FormCollection">
+          <Key>
+            <PropertyRef Name="FormName" />
+          </Key>
+          <Property Name="FormId" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="FormCap" Type="varchar" MaxLength="50" />
+          <Property Name="Descr" Type="varchar" MaxLength="50" />
+          <Property Name="FormGrp" Type="char" MaxLength="1" />
+          <Property Name="status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Invdet">
+          <Key>
+            <PropertyRef Name="vno" />
+            <PropertyRef Name="srno" />
+          </Key>
+          <Property Name="vno" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="srno" Type="int" Nullable="false" />
+          <Property Name="itm_code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="qty" Type="smallint" />
+          <Property Name="rtl_prc" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="amt" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="Invtrn">
+          <Key>
+            <PropertyRef Name="vno" />
+          </Key>
+          <Property Name="vno" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="ter_id" Type="smallint" Nullable="false" />
+          <Property Name="export_fg" Type="bit" />
+          <Property Name="tran_type" Type="smallint" Nullable="false" />
+          <Property Name="doc_no" Type="varchar" MaxLength="30" />
+          <Property Name="rec_dat" Type="datetime" Nullable="false" />
+          <Property Name="remarks" Type="varchar" MaxLength="60" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="Trng_fg" Type="bit" />
+          <Property Name="TerminalCode" Type="int" />
+          <Property Name="FileName" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="ItemBarcodes">
+          <Key>
+            <PropertyRef Name="itm_code" />
+            <PropertyRef Name="barcode" />
+          </Key>
+          <Property Name="itm_code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="barcode" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="shortname" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="actv_fg" Type="bit" />
+          <Property Name="category_id" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="size_id" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="rtl_prc" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="disc_per" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="disc_amt" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="unit_id" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="BillFmt" Type="smallint" />
+          <Property Name="Trng_fg" Type="bit" />
+          <Property Name="min_qty" Type="smallint" />
+          <Property Name="max_qty" Type="smallint" />
+        </EntityType>
+        <EntityType Name="KeybrdItem">
+          <Key>
+            <PropertyRef Name="keybrd_code" />
+            <PropertyRef Name="seq" />
+            <PropertyRef Name="itm_code" />
+          </Key>
+          <Property Name="keybrd_code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="seq" Type="smallint" Nullable="false" />
+          <Property Name="itm_code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="actv_fg" Type="bit" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="KeybrdSetup">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="actv_fg" Type="bit" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="shortname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="actv_fg" Type="bit" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="Saldet">
+          <Key>
+            <PropertyRef Name="tran_id" />
+            <PropertyRef Name="tran_seq" />
+          </Key>
+          <Property Name="tran_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tran_seq" Type="smallint" Nullable="false" />
+          <Property Name="itm_code" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="rtl_prc" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="disc_amt" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="qty" Type="smallint" />
+          <Property Name="amt" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="Saltrn">
+          <Key>
+            <PropertyRef Name="tran_id" />
+          </Key>
+          <Property Name="tran_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ter_id" Type="smallint" Nullable="false" />
+          <Property Name="export_fg" Type="bit" />
+          <Property Name="paid_amt" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="change_amt" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="Canceled" Type="bit" />
+          <Property Name="Event_id" Type="smallint" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AIMS_DB.dbo.ServerExport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ServerExport">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="TableName" />
+            <PropertyRef Name="TableType" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TableType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="sWhere" Type="varchar" MaxLength="500" />
+          <Property Name="actv_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="Sizes">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="shortname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="actv_fg" Type="bit" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="TerminalConfig">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="shortname" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="actv_fg" Type="bit" />
+          <Property Name="keybrd_id" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="Trng_fg" Type="bit" />
+          <Property Name="ImportBarred" Type="bit" />
+        </EntityType>
+        <EntityType Name="TerSaldet">
+          <Key>
+            <PropertyRef Name="tran_id" />
+            <PropertyRef Name="tran_seq" />
+          </Key>
+          <Property Name="tran_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tran_seq" Type="smallint" Nullable="false" />
+          <Property Name="itm_code" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="rtl_prc" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="disc_amt" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="qty" Type="smallint" />
+          <Property Name="amt" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="TerSaltrn">
+          <Key>
+            <PropertyRef Name="tran_id" />
+          </Key>
+          <Property Name="tran_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ter_id" Type="smallint" Nullable="false" />
+          <Property Name="export_fg" Type="bit" />
+          <Property Name="paid_amt" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="change_amt" Type="numeric" Precision="7" Scale="2" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="Canceled" Type="bit" />
+          <Property Name="Event_id" Type="smallint" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'AIMS_DB.dbo.tmpReportFilters' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmpReportFilters">
+          <Property Name="Type" Type="varchar" MaxLength="20" />
+          <Property Name="nVal" Type="int" />
+          <Property Name="sVal" Type="varchar" MaxLength="100" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AIMS_DB.dbo.tmpReportSource' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tmpReportSource">
+          <Key>
+            <PropertyRef Name="Itm_Code" />
+          </Key>
+          <Property Name="Itm_Code" Type="int" Nullable="false" />
+          <Property Name="Op_Qty" Type="int" />
+          <Property Name="Inward_Qty" Type="int" />
+          <Property Name="Op_Inward_Qty" Type="int" />
+          <Property Name="Adj_Qty" Type="int" />
+          <Property Name="Sales_Qty" Type="int" />
+          <Property Name="Rtl_Prc" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Sales_Amt" Type="numeric" Precision="21" Scale="2" />
+          <Property Name="Disc_Per_Item" Type="numeric" Precision="8" Scale="2" />
+          <Property Name="Disc_Amt" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="Net_Rtl_Prc" Type="numeric" Precision="11" Scale="2" />
+          <Property Name="Net_Sales_Amt" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="Cl_Qty" Type="int" />
+          <Property Name="Cl_Amt" Type="numeric" Precision="21" Scale="2" />
+          <Property Name="Itm_Name" Type="varchar" MaxLength="60" />
+          <Property Name="Itm_shortname" Type="varchar" MaxLength="35" />
+          <Property Name="Category_Id" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="Category_Name" Type="varchar" MaxLength="30" />
+          <Property Name="Category_ShortName" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Units">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="shortname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="actv_fg" Type="bit" />
+          <Property Name="dtadat" Type="datetime" />
+          <Property Name="dtatim" Type="varchar" MaxLength="10" />
+          <Property Name="dtausr" Type="varchar" MaxLength="10" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserMast">
+          <Key>
+            <PropertyRef Name="Uname" />
+          </Key>
+          <Property Name="Uid" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Uname" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="pwd" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Level" Type="int" />
+          <Property Name="status" Type="char" MaxLength="1" />
+          <Property Name="Trng_fg" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserRights">
+          <Key>
+            <PropertyRef Name="Uid" />
+            <PropertyRef Name="FormId" />
+          </Key>
+          <Property Name="Uid" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="FormId" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="add" Type="char" MaxLength="1" />
+          <Property Name="del" Type="char" MaxLength="1" />
+          <Property Name="edit" Type="char" MaxLength="1" />
+          <Property Name="print" Type="char" MaxLength="1" />
+          <Property Name="Nevigate" Type="char" MaxLength="1" />
+          <Property Name="report" Type="char" MaxLength="1" />
+          <Property Name="status" Type="char" MaxLength="1" />
+        </EntityType>
+        <Function Name="rptInventoryDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="from_dt" Type="varchar" Mode="In" />
+          <Parameter Name="to_dt" Type="varchar" Mode="In" />
+          <Parameter Name="TerId" Type="smallint" Mode="In" />
+          <Parameter Name="UserId" Type="smallint" Mode="In" />
+          <Parameter Name="Tran_type" Type="tinyint" Mode="In" />
+          <Parameter Name="ItemId" Type="smallint" Mode="In" />
+          <Parameter Name="CategoryId" Type="smallint" Mode="In" />
+          <Parameter Name="SizeId" Type="smallint" Mode="In" />
+          <Parameter Name="UnitId" Type="smallint" Mode="In" />
+          <Parameter Name="grp_by" Type="varchar" Mode="In" />
+          <Parameter Name="vno" Type="int" Mode="In" />
+          <Parameter Name="PreviewEnabled" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="rptInventorySummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="from_dt" Type="varchar" Mode="In" />
+          <Parameter Name="to_dt" Type="varchar" Mode="In" />
+          <Parameter Name="TerId" Type="smallint" Mode="In" />
+          <Parameter Name="UserId" Type="smallint" Mode="In" />
+          <Parameter Name="Tran_type" Type="tinyint" Mode="In" />
+          <Parameter Name="PreviewEnabled" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="rptItemList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IncludeCategory" Type="varchar" Mode="In" />
+          <Parameter Name="IncludeItem" Type="varchar" Mode="In" />
+          <Parameter Name="PreviewEnabled" Type="tinyint" Mode="In" />
+          <Parameter Name="RepeatLabelCount" Type="tinyint" Mode="In" />
+          <Parameter Name="isPaymentLabel" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="rptKeybrdConfiguration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iKbdCode" Type="numeric" Mode="In" />
+          <Parameter Name="PreviewEnabled" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="rptSalesDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="from_dt" Type="varchar" Mode="In" />
+          <Parameter Name="to_dt" Type="varchar" Mode="In" />
+          <Parameter Name="TerId" Type="smallint" Mode="In" />
+          <Parameter Name="UserId" Type="smallint" Mode="In" />
+          <Parameter Name="Status" Type="tinyint" Mode="In" />
+          <Parameter Name="ItemId" Type="smallint" Mode="In" />
+          <Parameter Name="CategoryId" Type="smallint" Mode="In" />
+          <Parameter Name="SizeId" Type="smallint" Mode="In" />
+          <Parameter Name="UnitId" Type="smallint" Mode="In" />
+          <Parameter Name="grp_by" Type="varchar" Mode="In" />
+          <Parameter Name="trans_id" Type="varchar" Mode="In" />
+          <Parameter Name="GenAt" Type="tinyint" Mode="In" />
+          <Parameter Name="PreviewEnabled" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="rptSalesSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="from_dt" Type="varchar" Mode="In" />
+          <Parameter Name="to_dt" Type="varchar" Mode="In" />
+          <Parameter Name="TerId" Type="smallint" Mode="In" />
+          <Parameter Name="UserId" Type="smallint" Mode="In" />
+          <Parameter Name="Status" Type="tinyint" Mode="In" />
+          <Parameter Name="GenAt" Type="tinyint" Mode="In" />
+          <Parameter Name="PreviewEnabled" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="stpBarcodeItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="barcode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="stpFetchItemCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="keybrd_code" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="stpFetchTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Tran_Id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="stpFetchTicketList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="stpGetDenomsBreakUp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Amt" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="stpImportFromMdb2Sql" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MdbPath" Type="varchar" Mode="In" />
+          <Parameter Name="TableName" Type="varchar" Mode="In" />
+          <Parameter Name="IsEmptyTable" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="stpImportFromMdb2Sql_Saltrn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MdbPath" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="stpItemKeybrdList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iCategoryId" Type="numeric" Mode="In" />
+          <Parameter Name="iKbdCode" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="stpOPCL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="from_dt" Type="varchar" Mode="In" />
+          <Parameter Name="to_dt" Type="varchar" Mode="In" />
+          <Parameter Name="CategoryId" Type="smallint" Mode="In" />
+          <Parameter Name="ItemId" Type="smallint" Mode="In" />
+          <Parameter Name="PreviewEnabled" Type="tinyint" Mode="In" />
+        </Function>
+        <EntityContainer Name="AIMS_DBModelStoreContainer">
+          <EntitySet Name="BillSequence" EntityType="Self.BillSequence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventMast" EntityType="Self.EventMast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormCollection" EntityType="Self.FormCollection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invdet" EntityType="Self.Invdet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invtrn" EntityType="Self.Invtrn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemBarcodes" EntityType="Self.ItemBarcodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KeybrdItem" EntityType="Self.KeybrdItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KeybrdSetup" EntityType="Self.KeybrdSetup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saldet" EntityType="Self.Saldet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saltrn" EntityType="Self.Saltrn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sizes" EntityType="Self.Sizes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TerminalConfig" EntityType="Self.TerminalConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TerSaldet" EntityType="Self.TerSaldet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TerSaltrn" EntityType="Self.TerSaltrn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Units" EntityType="Self.Units" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMast" EntityType="Self.UserMast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRights" EntityType="Self.UserRights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServerExport" EntityType="Self.ServerExport" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ServerExport].[Id] AS [Id], 
+    [ServerExport].[TableName] AS [TableName], 
+    [ServerExport].[TableType] AS [TableType], 
+    [ServerExport].[sWhere] AS [sWhere], 
+    [ServerExport].[actv_fg] AS [actv_fg]
+    FROM [dbo].[ServerExport] AS [ServerExport]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tmpReportSource" EntityType="Self.tmpReportSource" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tmpReportSource].[Itm_Code] AS [Itm_Code], 
+    [tmpReportSource].[Op_Qty] AS [Op_Qty], 
+    [tmpReportSource].[Inward_Qty] AS [Inward_Qty], 
+    [tmpReportSource].[Op_Inward_Qty] AS [Op_Inward_Qty], 
+    [tmpReportSource].[Adj_Qty] AS [Adj_Qty], 
+    [tmpReportSource].[Sales_Qty] AS [Sales_Qty], 
+    [tmpReportSource].[Rtl_Prc] AS [Rtl_Prc], 
+    [tmpReportSource].[Sales_Amt] AS [Sales_Amt], 
+    [tmpReportSource].[Disc_Per_Item] AS [Disc_Per_Item], 
+    [tmpReportSource].[Disc_Amt] AS [Disc_Amt], 
+    [tmpReportSource].[Net_Rtl_Prc] AS [Net_Rtl_Prc], 
+    [tmpReportSource].[Net_Sales_Amt] AS [Net_Sales_Amt], 
+    [tmpReportSource].[Cl_Qty] AS [Cl_Qty], 
+    [tmpReportSource].[Cl_Amt] AS [Cl_Amt], 
+    [tmpReportSource].[Itm_Name] AS [Itm_Name], 
+    [tmpReportSource].[Itm_shortname] AS [Itm_shortname], 
+    [tmpReportSource].[Category_Id] AS [Category_Id], 
+    [tmpReportSource].[Category_Name] AS [Category_Name], 
+    [tmpReportSource].[Category_ShortName] AS [Category_ShortName]
+    FROM [dbo].[tmpReportSource] AS [tmpReportSource]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AIMS_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BillSequence">
+          <Key>
+            <PropertyRef Name="dtadat" />
+            <PropertyRef Name="ter_id" />
+          </Key>
+          <Property Name="dtadat" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ter_id" Type="Int16" Nullable="false" />
+          <Property Name="seq" Type="Int16" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shortname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="actv_fg" Type="Boolean" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="EventMast">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shortname" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="actv_fg" Type="Boolean" />
+          <Property Name="location_id" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="fdat" Type="DateTime" Precision="3" />
+          <Property Name="tdat" Type="DateTime" Precision="3" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FormCollection">
+          <Key>
+            <PropertyRef Name="FormName" />
+          </Key>
+          <Property Name="FormId" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FormCap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FormGrp" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Invdet">
+          <Key>
+            <PropertyRef Name="vno" />
+            <PropertyRef Name="srno" />
+          </Key>
+          <Property Name="vno" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="srno" Type="Int32" Nullable="false" />
+          <Property Name="itm_code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="qty" Type="Int16" />
+          <Property Name="rtl_prc" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="amt" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Invtrn">
+          <Key>
+            <PropertyRef Name="vno" />
+          </Key>
+          <Property Name="vno" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="ter_id" Type="Int16" Nullable="false" />
+          <Property Name="export_fg" Type="Boolean" />
+          <Property Name="tran_type" Type="Int16" Nullable="false" />
+          <Property Name="doc_no" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="rec_dat" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="remarks" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Trng_fg" Type="Boolean" />
+          <Property Name="TerminalCode" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ItemBarcode">
+          <Key>
+            <PropertyRef Name="itm_code" />
+            <PropertyRef Name="barcode" />
+          </Key>
+          <Property Name="itm_code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="barcode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shortname" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="actv_fg" Type="Boolean" />
+          <Property Name="category_id" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="size_id" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="rtl_prc" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="disc_per" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="disc_amt" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="unit_id" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="BillFmt" Type="Int16" />
+          <Property Name="Trng_fg" Type="Boolean" />
+          <Property Name="min_qty" Type="Int16" />
+          <Property Name="max_qty" Type="Int16" />
+        </EntityType>
+        <EntityType Name="KeybrdItem">
+          <Key>
+            <PropertyRef Name="keybrd_code" />
+            <PropertyRef Name="seq" />
+            <PropertyRef Name="itm_code" />
+          </Key>
+          <Property Name="keybrd_code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="seq" Type="Int16" Nullable="false" />
+          <Property Name="itm_code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="actv_fg" Type="Boolean" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="KeybrdSetup">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="actv_fg" Type="Boolean" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shortname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="actv_fg" Type="Boolean" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Saldet">
+          <Key>
+            <PropertyRef Name="tran_id" />
+            <PropertyRef Name="tran_seq" />
+          </Key>
+          <Property Name="tran_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tran_seq" Type="Int16" Nullable="false" />
+          <Property Name="itm_code" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="rtl_prc" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="disc_amt" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="qty" Type="Int16" />
+          <Property Name="amt" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Saltrn">
+          <Key>
+            <PropertyRef Name="tran_id" />
+          </Key>
+          <Property Name="tran_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ter_id" Type="Int16" Nullable="false" />
+          <Property Name="export_fg" Type="Boolean" />
+          <Property Name="paid_amt" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="change_amt" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Canceled" Type="Boolean" />
+          <Property Name="Event_id" Type="Int16" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shortname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="actv_fg" Type="Boolean" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TerminalConfig">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shortname" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="actv_fg" Type="Boolean" />
+          <Property Name="keybrd_id" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Trng_fg" Type="Boolean" />
+          <Property Name="ImportBarred" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TerSaldet">
+          <Key>
+            <PropertyRef Name="tran_id" />
+            <PropertyRef Name="tran_seq" />
+          </Key>
+          <Property Name="tran_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tran_seq" Type="Int16" Nullable="false" />
+          <Property Name="itm_code" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="rtl_prc" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="disc_amt" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="qty" Type="Int16" />
+          <Property Name="amt" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TerSaltrn">
+          <Key>
+            <PropertyRef Name="tran_id" />
+          </Key>
+          <Property Name="tran_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ter_id" Type="Int16" Nullable="false" />
+          <Property Name="export_fg" Type="Boolean" />
+          <Property Name="paid_amt" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="change_amt" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Canceled" Type="Boolean" />
+          <Property Name="Event_id" Type="Int16" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shortname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="actv_fg" Type="Boolean" />
+          <Property Name="dtadat" Type="DateTime" Precision="3" />
+          <Property Name="dtatim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtausr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="UserMast">
+          <Key>
+            <PropertyRef Name="Uname" />
+          </Key>
+          <Property Name="Uid" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Uname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pwd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Level" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Trng_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="UserRight">
+          <Key>
+            <PropertyRef Name="Uid" />
+            <PropertyRef Name="FormId" />
+          </Key>
+          <Property Name="Uid" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="FormId" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="add" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="del" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="edit" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="print" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Nevigate" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="report" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ServerExport">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="TableName" />
+            <PropertyRef Name="TableType" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TableType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sWhere" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="actv_fg" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tmpReportSource">
+          <Key>
+            <PropertyRef Name="Itm_Code" />
+          </Key>
+          <Property Name="Itm_Code" Type="Int32" Nullable="false" />
+          <Property Name="Op_Qty" Type="Int32" />
+          <Property Name="Inward_Qty" Type="Int32" />
+          <Property Name="Op_Inward_Qty" Type="Int32" />
+          <Property Name="Adj_Qty" Type="Int32" />
+          <Property Name="Sales_Qty" Type="Int32" />
+          <Property Name="Rtl_Prc" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Sales_Amt" Type="Decimal" Precision="21" Scale="2" />
+          <Property Name="Disc_Per_Item" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Disc_Amt" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="Net_Rtl_Prc" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="Net_Sales_Amt" Type="Decimal" Precision="22" Scale="2" />
+          <Property Name="Cl_Qty" Type="Int32" />
+          <Property Name="Cl_Amt" Type="Decimal" Precision="21" Scale="2" />
+          <Property Name="Itm_Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Itm_shortname" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Category_Id" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="Category_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Category_ShortName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="AIMS_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BillSequences" EntityType="Self.BillSequence" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="EventMasts" EntityType="Self.EventMast" />
+          <EntitySet Name="FormCollections" EntityType="Self.FormCollection" />
+          <EntitySet Name="Invdets" EntityType="Self.Invdet" />
+          <EntitySet Name="Invtrns" EntityType="Self.Invtrn" />
+          <EntitySet Name="ItemBarcodes" EntityType="Self.ItemBarcode" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="KeybrdItems" EntityType="Self.KeybrdItem" />
+          <EntitySet Name="KeybrdSetups" EntityType="Self.KeybrdSetup" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Saldets" EntityType="Self.Saldet" />
+          <EntitySet Name="Saltrns" EntityType="Self.Saltrn" />
+          <EntitySet Name="Sizes" EntityType="Self.Size" />
+          <EntitySet Name="TerminalConfigs" EntityType="Self.TerminalConfig" />
+          <EntitySet Name="TerSaldets" EntityType="Self.TerSaldet" />
+          <EntitySet Name="TerSaltrns" EntityType="Self.TerSaltrn" />
+          <EntitySet Name="Units" EntityType="Self.Unit" />
+          <EntitySet Name="UserMasts" EntityType="Self.UserMast" />
+          <EntitySet Name="UserRights" EntityType="Self.UserRight" />
+          <EntitySet Name="ServerExports" EntityType="Self.ServerExport" />
+          <EntitySet Name="tmpReportSources" EntityType="Self.tmpReportSource" />
+          <FunctionImport Name="rptInventoryDetail" ReturnType="Collection(AIMS_DBModel.rptInventoryDetail_Result)">
+            <Parameter Name="from_dt" Mode="In" Type="String" />
+            <Parameter Name="to_dt" Mode="In" Type="String" />
+            <Parameter Name="TerId" Mode="In" Type="Int16" />
+            <Parameter Name="UserId" Mode="In" Type="Int16" />
+            <Parameter Name="Tran_type" Mode="In" Type="Byte" />
+            <Parameter Name="ItemId" Mode="In" Type="Int16" />
+            <Parameter Name="CategoryId" Mode="In" Type="Int16" />
+            <Parameter Name="SizeId" Mode="In" Type="Int16" />
+            <Parameter Name="UnitId" Mode="In" Type="Int16" />
+            <Parameter Name="grp_by" Mode="In" Type="String" />
+            <Parameter Name="vno" Mode="In" Type="Int32" />
+            <Parameter Name="PreviewEnabled" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="rptInventorySummary" ReturnType="Collection(AIMS_DBModel.rptInventorySummary_Result)">
+            <Parameter Name="from_dt" Mode="In" Type="String" />
+            <Parameter Name="to_dt" Mode="In" Type="String" />
+            <Parameter Name="TerId" Mode="In" Type="Int16" />
+            <Parameter Name="UserId" Mode="In" Type="Int16" />
+            <Parameter Name="Tran_type" Mode="In" Type="Byte" />
+            <Parameter Name="PreviewEnabled" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="rptItemList" ReturnType="Collection(AIMS_DBModel.rptItemList_Result)">
+            <Parameter Name="IncludeCategory" Mode="In" Type="String" />
+            <Parameter Name="IncludeItem" Mode="In" Type="String" />
+            <Parameter Name="PreviewEnabled" Mode="In" Type="Byte" />
+            <Parameter Name="RepeatLabelCount" Mode="In" Type="Byte" />
+            <Parameter Name="isPaymentLabel" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="rptKeybrdConfiguration" ReturnType="Collection(AIMS_DBModel.rptKeybrdConfiguration_Result)">
+            <Parameter Name="iKbdCode" Mode="In" Type="Decimal" />
+            <Parameter Name="PreviewEnabled" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="rptSalesDetail" ReturnType="Collection(AIMS_DBModel.rptSalesDetail_Result)">
+            <Parameter Name="from_dt" Mode="In" Type="String" />
+            <Parameter Name="to_dt" Mode="In" Type="String" />
+            <Parameter Name="TerId" Mode="In" Type="Int16" />
+            <Parameter Name="UserId" Mode="In" Type="Int16" />
+            <Parameter Name="Status" Mode="In" Type="Byte" />
+            <Parameter Name="ItemId" Mode="In" Type="Int16" />
+            <Parameter Name="CategoryId" Mode="In" Type="Int16" />
+            <Parameter Name="SizeId" Mode="In" Type="Int16" />
+            <Parameter Name="UnitId" Mode="In" Type="Int16" />
+            <Parameter Name="grp_by" Mode="In" Type="String" />
+            <Parameter Name="trans_id" Mode="In" Type="String" />
+            <Parameter Name="GenAt" Mode="In" Type="Byte" />
+            <Parameter Name="PreviewEnabled" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="rptSalesSummary" ReturnType="Collection(AIMS_DBModel.rptSalesSummary_Result)">
+            <Parameter Name="from_dt" Mode="In" Type="String" />
+            <Parameter Name="to_dt" Mode="In" Type="String" />
+            <Parameter Name="TerId" Mode="In" Type="Int16" />
+            <Parameter Name="UserId" Mode="In" Type="Int16" />
+            <Parameter Name="Status" Mode="In" Type="Byte" />
+            <Parameter Name="GenAt" Mode="In" Type="Byte" />
+            <Parameter Name="PreviewEnabled" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="stpBarcodeItem" ReturnType="Collection(AIMS_DBModel.stpBarcodeItem_Result)">
+            <Parameter Name="barcode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="stpFetchItemCategory" ReturnType="Collection(AIMS_DBModel.stpFetchItemCategory_Result)">
+            <Parameter Name="keybrd_code" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="stpFetchTicket" ReturnType="Collection(AIMS_DBModel.stpFetchTicket_Result)">
+            <Parameter Name="Tran_Id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="stpFetchTicketList" ReturnType="Collection(AIMS_DBModel.stpFetchTicketList_Result)" />
+          <FunctionImport Name="stpGetDenomsBreakUp" ReturnType="Collection(Decimal)">
+            <Parameter Name="Amt" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="stpImportFromMdb2Sql">
+            <Parameter Name="MdbPath" Mode="In" Type="String" />
+            <Parameter Name="TableName" Mode="In" Type="String" />
+            <Parameter Name="IsEmptyTable" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="stpImportFromMdb2Sql_Saltrn">
+            <Parameter Name="MdbPath" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="stpItemKeybrdList" ReturnType="Collection(AIMS_DBModel.stpItemKeybrdList_Result)">
+            <Parameter Name="iCategoryId" Mode="In" Type="Decimal" />
+            <Parameter Name="iKbdCode" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="stpOPCL" ReturnType="Collection(AIMS_DBModel.stpOPCL_Result)">
+            <Parameter Name="from_dt" Mode="In" Type="String" />
+            <Parameter Name="to_dt" Mode="In" Type="String" />
+            <Parameter Name="CategoryId" Mode="In" Type="Int16" />
+            <Parameter Name="ItemId" Mode="In" Type="Int16" />
+            <Parameter Name="PreviewEnabled" Mode="In" Type="Byte" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="rptInventoryDetail_Result">
+          <Property Type="Int32" Name="Itm_Code" Nullable="false" />
+          <Property Type="Int32" Name="Op_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Op_Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Adj_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Sales_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Rtl_Prc" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Sales_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Per_Item" Nullable="true" Precision="8" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Amt" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="Net_Rtl_Prc" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="Net_Sales_Amt" Nullable="true" Precision="22" Scale="2" />
+          <Property Type="Int32" Name="Cl_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Cl_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="String" Name="Itm_Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Itm_shortname" Nullable="true" MaxLength="35" />
+          <Property Type="Decimal" Name="Category_Id" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Category_ShortName" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="rptInventorySummary_Result">
+          <Property Type="Int32" Name="Itm_Code" Nullable="false" />
+          <Property Type="Int32" Name="Op_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Op_Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Adj_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Sales_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Rtl_Prc" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Sales_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Per_Item" Nullable="true" Precision="8" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Amt" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="Net_Rtl_Prc" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="Net_Sales_Amt" Nullable="true" Precision="22" Scale="2" />
+          <Property Type="Int32" Name="Cl_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Cl_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="String" Name="Itm_Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Itm_shortname" Nullable="true" MaxLength="35" />
+          <Property Type="Decimal" Name="Category_Id" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Category_ShortName" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="rptItemList_Result">
+          <Property Type="Int32" Name="Itm_Code" Nullable="false" />
+          <Property Type="Int32" Name="Op_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Op_Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Adj_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Sales_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Rtl_Prc" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Sales_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Per_Item" Nullable="true" Precision="8" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Amt" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="Net_Rtl_Prc" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="Net_Sales_Amt" Nullable="true" Precision="22" Scale="2" />
+          <Property Type="Int32" Name="Cl_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Cl_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="String" Name="Itm_Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Itm_shortname" Nullable="true" MaxLength="35" />
+          <Property Type="Decimal" Name="Category_Id" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Category_ShortName" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="rptKeybrdConfiguration_Result">
+          <Property Type="Int32" Name="Itm_Code" Nullable="false" />
+          <Property Type="Int32" Name="Op_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Op_Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Adj_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Sales_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Rtl_Prc" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Sales_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Per_Item" Nullable="true" Precision="8" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Amt" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="Net_Rtl_Prc" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="Net_Sales_Amt" Nullable="true" Precision="22" Scale="2" />
+          <Property Type="Int32" Name="Cl_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Cl_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="String" Name="Itm_Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Itm_shortname" Nullable="true" MaxLength="35" />
+          <Property Type="Decimal" Name="Category_Id" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Category_ShortName" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="rptSalesDetail_Result">
+          <Property Type="Int32" Name="Itm_Code" Nullable="false" />
+          <Property Type="Int32" Name="Op_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Op_Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Adj_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Sales_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Rtl_Prc" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Sales_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Per_Item" Nullable="true" Precision="8" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Amt" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="Net_Rtl_Prc" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="Net_Sales_Amt" Nullable="true" Precision="22" Scale="2" />
+          <Property Type="Int32" Name="Cl_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Cl_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="String" Name="Itm_Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Itm_shortname" Nullable="true" MaxLength="35" />
+          <Property Type="Decimal" Name="Category_Id" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Category_ShortName" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="rptSalesSummary_Result">
+          <Property Type="Int32" Name="Itm_Code" Nullable="false" />
+          <Property Type="Int32" Name="Op_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Op_Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Adj_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Sales_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Rtl_Prc" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Sales_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Per_Item" Nullable="true" Precision="8" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Amt" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="Net_Rtl_Prc" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="Net_Sales_Amt" Nullable="true" Precision="22" Scale="2" />
+          <Property Type="Int32" Name="Cl_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Cl_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="String" Name="Itm_Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Itm_shortname" Nullable="true" MaxLength="35" />
+          <Property Type="Decimal" Name="Category_Id" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Category_ShortName" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="stpBarcodeItem_Result">
+          <Property Type="Decimal" Name="itm_code" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="shortname" Nullable="false" MaxLength="35" />
+          <Property Type="Decimal" Name="rtl_prc" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="disc_amt" Nullable="false" Precision="8" Scale="2" />
+          <Property Type="String" Name="SizeName" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="ItemBarcode" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="stpFetchItemCategory_Result">
+          <Property Type="Decimal" Name="Code" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="shortname" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="stpFetchTicket_Result">
+          <Property Type="String" Name="TranId" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="tran_seq" Nullable="false" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="67" />
+          <Property Type="Int32" Name="ItemQty" Nullable="true" />
+          <Property Type="Decimal" Name="Rtl_Price" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Amt" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Sal_Prc" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Bill_Amt" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Paid_Amt" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="Change_Amt" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="ItemCode" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="DtaDat" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="Grp" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="stpFetchTicketList_Result">
+          <Property Type="String" Name="tran_id" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="Tkt_Amt" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Int32" Name="Tkt_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="paid_amt" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Tkt_DiscAmt" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="change_amt" Nullable="true" Precision="7" Scale="2" />
+          <Property Type="Int16" Name="ter_id" Nullable="false" />
+          <Property Type="String" Name="dtadat" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="dtatim" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="dtausr" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Cancelled" Nullable="false" MaxLength="9" />
+        </ComplexType>
+        <ComplexType Name="stpItemKeybrdList_Result">
+          <Property Type="Int16" Name="seq" Nullable="false" />
+          <Property Type="Decimal" Name="itm_code" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="shortname" Nullable="false" MaxLength="35" />
+          <Property Type="Decimal" Name="rtl_prc" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="disc_amt" Nullable="false" Precision="8" Scale="2" />
+          <Property Type="String" Name="SizeName" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="stpOPCL_Result">
+          <Property Type="Int32" Name="Itm_Code" Nullable="false" />
+          <Property Type="Int32" Name="Op_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Op_Inward_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Adj_Qty" Nullable="true" />
+          <Property Type="Int32" Name="Sales_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Rtl_Prc" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Sales_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Per_Item" Nullable="true" Precision="8" Scale="2" />
+          <Property Type="Decimal" Name="Disc_Amt" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="Net_Rtl_Prc" Nullable="true" Precision="11" Scale="2" />
+          <Property Type="Decimal" Name="Net_Sales_Amt" Nullable="true" Precision="22" Scale="2" />
+          <Property Type="Int32" Name="Cl_Qty" Nullable="true" />
+          <Property Type="Decimal" Name="Cl_Amt" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="String" Name="Itm_Name" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Itm_shortname" Nullable="true" MaxLength="35" />
+          <Property Type="Decimal" Name="Category_Id" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Category_ShortName" Nullable="true" MaxLength="30" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AIMS_DBModelStoreContainer" CdmEntityContainer="AIMS_DBEntities">
+          <EntitySetMapping Name="BillSequences">
+            <EntityTypeMapping TypeName="AIMS_DBModel.BillSequence">
+              <MappingFragment StoreEntitySet="BillSequence">
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="ter_id" ColumnName="ter_id" />
+                <ScalarProperty Name="seq" ColumnName="seq" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="AIMS_DBModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="actv_fg" ColumnName="actv_fg" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventMasts">
+            <EntityTypeMapping TypeName="AIMS_DBModel.EventMast">
+              <MappingFragment StoreEntitySet="EventMast">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="actv_fg" ColumnName="actv_fg" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="fdat" ColumnName="fdat" />
+                <ScalarProperty Name="tdat" ColumnName="tdat" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormCollections">
+            <EntityTypeMapping TypeName="AIMS_DBModel.FormCollection">
+              <MappingFragment StoreEntitySet="FormCollection">
+                <ScalarProperty Name="FormId" ColumnName="FormId" />
+                <ScalarProperty Name="FormName" ColumnName="FormName" />
+                <ScalarProperty Name="FormCap" ColumnName="FormCap" />
+                <ScalarProperty Name="Descr" ColumnName="Descr" />
+                <ScalarProperty Name="FormGrp" ColumnName="FormGrp" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invdets">
+            <EntityTypeMapping TypeName="AIMS_DBModel.Invdet">
+              <MappingFragment StoreEntitySet="Invdet">
+                <ScalarProperty Name="vno" ColumnName="vno" />
+                <ScalarProperty Name="srno" ColumnName="srno" />
+                <ScalarProperty Name="itm_code" ColumnName="itm_code" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="rtl_prc" ColumnName="rtl_prc" />
+                <ScalarProperty Name="amt" ColumnName="amt" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invtrns">
+            <EntityTypeMapping TypeName="AIMS_DBModel.Invtrn">
+              <MappingFragment StoreEntitySet="Invtrn">
+                <ScalarProperty Name="vno" ColumnName="vno" />
+                <ScalarProperty Name="ter_id" ColumnName="ter_id" />
+                <ScalarProperty Name="export_fg" ColumnName="export_fg" />
+                <ScalarProperty Name="tran_type" ColumnName="tran_type" />
+                <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+                <ScalarProperty Name="rec_dat" ColumnName="rec_dat" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+                <ScalarProperty Name="TerminalCode" ColumnName="TerminalCode" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemBarcodes">
+            <EntityTypeMapping TypeName="AIMS_DBModel.ItemBarcode">
+              <MappingFragment StoreEntitySet="ItemBarcodes">
+                <ScalarProperty Name="itm_code" ColumnName="itm_code" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="AIMS_DBModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="actv_fg" ColumnName="actv_fg" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="size_id" ColumnName="size_id" />
+                <ScalarProperty Name="rtl_prc" ColumnName="rtl_prc" />
+                <ScalarProperty Name="disc_per" ColumnName="disc_per" />
+                <ScalarProperty Name="disc_amt" ColumnName="disc_amt" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+                <ScalarProperty Name="BillFmt" ColumnName="BillFmt" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+                <ScalarProperty Name="min_qty" ColumnName="min_qty" />
+                <ScalarProperty Name="max_qty" ColumnName="max_qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KeybrdItems">
+            <EntityTypeMapping TypeName="AIMS_DBModel.KeybrdItem">
+              <MappingFragment StoreEntitySet="KeybrdItem">
+                <ScalarProperty Name="keybrd_code" ColumnName="keybrd_code" />
+                <ScalarProperty Name="seq" ColumnName="seq" />
+                <ScalarProperty Name="itm_code" ColumnName="itm_code" />
+                <ScalarProperty Name="actv_fg" ColumnName="actv_fg" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KeybrdSetups">
+            <EntityTypeMapping TypeName="AIMS_DBModel.KeybrdSetup">
+              <MappingFragment StoreEntitySet="KeybrdSetup">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="actv_fg" ColumnName="actv_fg" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="AIMS_DBModel.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="actv_fg" ColumnName="actv_fg" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saldets">
+            <EntityTypeMapping TypeName="AIMS_DBModel.Saldet">
+              <MappingFragment StoreEntitySet="Saldet">
+                <ScalarProperty Name="tran_id" ColumnName="tran_id" />
+                <ScalarProperty Name="tran_seq" ColumnName="tran_seq" />
+                <ScalarProperty Name="itm_code" ColumnName="itm_code" />
+                <ScalarProperty Name="rtl_prc" ColumnName="rtl_prc" />
+                <ScalarProperty Name="disc_amt" ColumnName="disc_amt" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="amt" ColumnName="amt" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saltrns">
+            <EntityTypeMapping TypeName="AIMS_DBModel.Saltrn">
+              <MappingFragment StoreEntitySet="Saltrn">
+                <ScalarProperty Name="tran_id" ColumnName="tran_id" />
+                <ScalarProperty Name="ter_id" ColumnName="ter_id" />
+                <ScalarProperty Name="export_fg" ColumnName="export_fg" />
+                <ScalarProperty Name="paid_amt" ColumnName="paid_amt" />
+                <ScalarProperty Name="change_amt" ColumnName="change_amt" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Canceled" ColumnName="Canceled" />
+                <ScalarProperty Name="Event_id" ColumnName="Event_id" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sizes">
+            <EntityTypeMapping TypeName="AIMS_DBModel.Size">
+              <MappingFragment StoreEntitySet="Sizes">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="actv_fg" ColumnName="actv_fg" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TerminalConfigs">
+            <EntityTypeMapping TypeName="AIMS_DBModel.TerminalConfig">
+              <MappingFragment StoreEntitySet="TerminalConfig">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="actv_fg" ColumnName="actv_fg" />
+                <ScalarProperty Name="keybrd_id" ColumnName="keybrd_id" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+                <ScalarProperty Name="ImportBarred" ColumnName="ImportBarred" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TerSaldets">
+            <EntityTypeMapping TypeName="AIMS_DBModel.TerSaldet">
+              <MappingFragment StoreEntitySet="TerSaldet">
+                <ScalarProperty Name="tran_id" ColumnName="tran_id" />
+                <ScalarProperty Name="tran_seq" ColumnName="tran_seq" />
+                <ScalarProperty Name="itm_code" ColumnName="itm_code" />
+                <ScalarProperty Name="rtl_prc" ColumnName="rtl_prc" />
+                <ScalarProperty Name="disc_amt" ColumnName="disc_amt" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="amt" ColumnName="amt" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TerSaltrns">
+            <EntityTypeMapping TypeName="AIMS_DBModel.TerSaltrn">
+              <MappingFragment StoreEntitySet="TerSaltrn">
+                <ScalarProperty Name="tran_id" ColumnName="tran_id" />
+                <ScalarProperty Name="ter_id" ColumnName="ter_id" />
+                <ScalarProperty Name="export_fg" ColumnName="export_fg" />
+                <ScalarProperty Name="paid_amt" ColumnName="paid_amt" />
+                <ScalarProperty Name="change_amt" ColumnName="change_amt" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Canceled" ColumnName="Canceled" />
+                <ScalarProperty Name="Event_id" ColumnName="Event_id" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="AIMS_DBModel.Unit">
+              <MappingFragment StoreEntitySet="Units">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="actv_fg" ColumnName="actv_fg" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasts">
+            <EntityTypeMapping TypeName="AIMS_DBModel.UserMast">
+              <MappingFragment StoreEntitySet="UserMast">
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="Uname" ColumnName="Uname" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Trng_fg" ColumnName="Trng_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRights">
+            <EntityTypeMapping TypeName="AIMS_DBModel.UserRight">
+              <MappingFragment StoreEntitySet="UserRights">
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="FormId" ColumnName="FormId" />
+                <ScalarProperty Name="add" ColumnName="add" />
+                <ScalarProperty Name="del" ColumnName="del" />
+                <ScalarProperty Name="edit" ColumnName="edit" />
+                <ScalarProperty Name="print" ColumnName="print" />
+                <ScalarProperty Name="Nevigate" ColumnName="Nevigate" />
+                <ScalarProperty Name="report" ColumnName="report" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServerExports">
+            <EntityTypeMapping TypeName="AIMS_DBModel.ServerExport">
+              <MappingFragment StoreEntitySet="ServerExport">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="TableType" ColumnName="TableType" />
+                <ScalarProperty Name="sWhere" ColumnName="sWhere" />
+                <ScalarProperty Name="actv_fg" ColumnName="actv_fg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmpReportSources">
+            <EntityTypeMapping TypeName="AIMS_DBModel.tmpReportSource">
+              <MappingFragment StoreEntitySet="tmpReportSource">
+                <ScalarProperty Name="Itm_Code" ColumnName="Itm_Code" />
+                <ScalarProperty Name="Op_Qty" ColumnName="Op_Qty" />
+                <ScalarProperty Name="Inward_Qty" ColumnName="Inward_Qty" />
+                <ScalarProperty Name="Op_Inward_Qty" ColumnName="Op_Inward_Qty" />
+                <ScalarProperty Name="Adj_Qty" ColumnName="Adj_Qty" />
+                <ScalarProperty Name="Sales_Qty" ColumnName="Sales_Qty" />
+                <ScalarProperty Name="Rtl_Prc" ColumnName="Rtl_Prc" />
+                <ScalarProperty Name="Sales_Amt" ColumnName="Sales_Amt" />
+                <ScalarProperty Name="Disc_Per_Item" ColumnName="Disc_Per_Item" />
+                <ScalarProperty Name="Disc_Amt" ColumnName="Disc_Amt" />
+                <ScalarProperty Name="Net_Rtl_Prc" ColumnName="Net_Rtl_Prc" />
+                <ScalarProperty Name="Net_Sales_Amt" ColumnName="Net_Sales_Amt" />
+                <ScalarProperty Name="Cl_Qty" ColumnName="Cl_Qty" />
+                <ScalarProperty Name="Cl_Amt" ColumnName="Cl_Amt" />
+                <ScalarProperty Name="Itm_Name" ColumnName="Itm_Name" />
+                <ScalarProperty Name="Itm_shortname" ColumnName="Itm_shortname" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Category_ShortName" ColumnName="Category_ShortName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="rptInventoryDetail" FunctionName="AIMS_DBModel.Store.rptInventoryDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.rptInventoryDetail_Result">
+                <ScalarProperty Name="Itm_Code" ColumnName="Itm_Code" />
+                <ScalarProperty Name="Op_Qty" ColumnName="Op_Qty" />
+                <ScalarProperty Name="Inward_Qty" ColumnName="Inward_Qty" />
+                <ScalarProperty Name="Op_Inward_Qty" ColumnName="Op_Inward_Qty" />
+                <ScalarProperty Name="Adj_Qty" ColumnName="Adj_Qty" />
+                <ScalarProperty Name="Sales_Qty" ColumnName="Sales_Qty" />
+                <ScalarProperty Name="Rtl_Prc" ColumnName="Rtl_Prc" />
+                <ScalarProperty Name="Sales_Amt" ColumnName="Sales_Amt" />
+                <ScalarProperty Name="Disc_Per_Item" ColumnName="Disc_Per_Item" />
+                <ScalarProperty Name="Disc_Amt" ColumnName="Disc_Amt" />
+                <ScalarProperty Name="Net_Rtl_Prc" ColumnName="Net_Rtl_Prc" />
+                <ScalarProperty Name="Net_Sales_Amt" ColumnName="Net_Sales_Amt" />
+                <ScalarProperty Name="Cl_Qty" ColumnName="Cl_Qty" />
+                <ScalarProperty Name="Cl_Amt" ColumnName="Cl_Amt" />
+                <ScalarProperty Name="Itm_Name" ColumnName="Itm_Name" />
+                <ScalarProperty Name="Itm_shortname" ColumnName="Itm_shortname" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Category_ShortName" ColumnName="Category_ShortName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rptInventorySummary" FunctionName="AIMS_DBModel.Store.rptInventorySummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.rptInventorySummary_Result">
+                <ScalarProperty Name="Itm_Code" ColumnName="Itm_Code" />
+                <ScalarProperty Name="Op_Qty" ColumnName="Op_Qty" />
+                <ScalarProperty Name="Inward_Qty" ColumnName="Inward_Qty" />
+                <ScalarProperty Name="Op_Inward_Qty" ColumnName="Op_Inward_Qty" />
+                <ScalarProperty Name="Adj_Qty" ColumnName="Adj_Qty" />
+                <ScalarProperty Name="Sales_Qty" ColumnName="Sales_Qty" />
+                <ScalarProperty Name="Rtl_Prc" ColumnName="Rtl_Prc" />
+                <ScalarProperty Name="Sales_Amt" ColumnName="Sales_Amt" />
+                <ScalarProperty Name="Disc_Per_Item" ColumnName="Disc_Per_Item" />
+                <ScalarProperty Name="Disc_Amt" ColumnName="Disc_Amt" />
+                <ScalarProperty Name="Net_Rtl_Prc" ColumnName="Net_Rtl_Prc" />
+                <ScalarProperty Name="Net_Sales_Amt" ColumnName="Net_Sales_Amt" />
+                <ScalarProperty Name="Cl_Qty" ColumnName="Cl_Qty" />
+                <ScalarProperty Name="Cl_Amt" ColumnName="Cl_Amt" />
+                <ScalarProperty Name="Itm_Name" ColumnName="Itm_Name" />
+                <ScalarProperty Name="Itm_shortname" ColumnName="Itm_shortname" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Category_ShortName" ColumnName="Category_ShortName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rptItemList" FunctionName="AIMS_DBModel.Store.rptItemList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.rptItemList_Result">
+                <ScalarProperty Name="Itm_Code" ColumnName="Itm_Code" />
+                <ScalarProperty Name="Op_Qty" ColumnName="Op_Qty" />
+                <ScalarProperty Name="Inward_Qty" ColumnName="Inward_Qty" />
+                <ScalarProperty Name="Op_Inward_Qty" ColumnName="Op_Inward_Qty" />
+                <ScalarProperty Name="Adj_Qty" ColumnName="Adj_Qty" />
+                <ScalarProperty Name="Sales_Qty" ColumnName="Sales_Qty" />
+                <ScalarProperty Name="Rtl_Prc" ColumnName="Rtl_Prc" />
+                <ScalarProperty Name="Sales_Amt" ColumnName="Sales_Amt" />
+                <ScalarProperty Name="Disc_Per_Item" ColumnName="Disc_Per_Item" />
+                <ScalarProperty Name="Disc_Amt" ColumnName="Disc_Amt" />
+                <ScalarProperty Name="Net_Rtl_Prc" ColumnName="Net_Rtl_Prc" />
+                <ScalarProperty Name="Net_Sales_Amt" ColumnName="Net_Sales_Amt" />
+                <ScalarProperty Name="Cl_Qty" ColumnName="Cl_Qty" />
+                <ScalarProperty Name="Cl_Amt" ColumnName="Cl_Amt" />
+                <ScalarProperty Name="Itm_Name" ColumnName="Itm_Name" />
+                <ScalarProperty Name="Itm_shortname" ColumnName="Itm_shortname" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Category_ShortName" ColumnName="Category_ShortName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rptKeybrdConfiguration" FunctionName="AIMS_DBModel.Store.rptKeybrdConfiguration">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.rptKeybrdConfiguration_Result">
+                <ScalarProperty Name="Itm_Code" ColumnName="Itm_Code" />
+                <ScalarProperty Name="Op_Qty" ColumnName="Op_Qty" />
+                <ScalarProperty Name="Inward_Qty" ColumnName="Inward_Qty" />
+                <ScalarProperty Name="Op_Inward_Qty" ColumnName="Op_Inward_Qty" />
+                <ScalarProperty Name="Adj_Qty" ColumnName="Adj_Qty" />
+                <ScalarProperty Name="Sales_Qty" ColumnName="Sales_Qty" />
+                <ScalarProperty Name="Rtl_Prc" ColumnName="Rtl_Prc" />
+                <ScalarProperty Name="Sales_Amt" ColumnName="Sales_Amt" />
+                <ScalarProperty Name="Disc_Per_Item" ColumnName="Disc_Per_Item" />
+                <ScalarProperty Name="Disc_Amt" ColumnName="Disc_Amt" />
+                <ScalarProperty Name="Net_Rtl_Prc" ColumnName="Net_Rtl_Prc" />
+                <ScalarProperty Name="Net_Sales_Amt" ColumnName="Net_Sales_Amt" />
+                <ScalarProperty Name="Cl_Qty" ColumnName="Cl_Qty" />
+                <ScalarProperty Name="Cl_Amt" ColumnName="Cl_Amt" />
+                <ScalarProperty Name="Itm_Name" ColumnName="Itm_Name" />
+                <ScalarProperty Name="Itm_shortname" ColumnName="Itm_shortname" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Category_ShortName" ColumnName="Category_ShortName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rptSalesDetail" FunctionName="AIMS_DBModel.Store.rptSalesDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.rptSalesDetail_Result">
+                <ScalarProperty Name="Itm_Code" ColumnName="Itm_Code" />
+                <ScalarProperty Name="Op_Qty" ColumnName="Op_Qty" />
+                <ScalarProperty Name="Inward_Qty" ColumnName="Inward_Qty" />
+                <ScalarProperty Name="Op_Inward_Qty" ColumnName="Op_Inward_Qty" />
+                <ScalarProperty Name="Adj_Qty" ColumnName="Adj_Qty" />
+                <ScalarProperty Name="Sales_Qty" ColumnName="Sales_Qty" />
+                <ScalarProperty Name="Rtl_Prc" ColumnName="Rtl_Prc" />
+                <ScalarProperty Name="Sales_Amt" ColumnName="Sales_Amt" />
+                <ScalarProperty Name="Disc_Per_Item" ColumnName="Disc_Per_Item" />
+                <ScalarProperty Name="Disc_Amt" ColumnName="Disc_Amt" />
+                <ScalarProperty Name="Net_Rtl_Prc" ColumnName="Net_Rtl_Prc" />
+                <ScalarProperty Name="Net_Sales_Amt" ColumnName="Net_Sales_Amt" />
+                <ScalarProperty Name="Cl_Qty" ColumnName="Cl_Qty" />
+                <ScalarProperty Name="Cl_Amt" ColumnName="Cl_Amt" />
+                <ScalarProperty Name="Itm_Name" ColumnName="Itm_Name" />
+                <ScalarProperty Name="Itm_shortname" ColumnName="Itm_shortname" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Category_ShortName" ColumnName="Category_ShortName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="rptSalesSummary" FunctionName="AIMS_DBModel.Store.rptSalesSummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.rptSalesSummary_Result">
+                <ScalarProperty Name="Itm_Code" ColumnName="Itm_Code" />
+                <ScalarProperty Name="Op_Qty" ColumnName="Op_Qty" />
+                <ScalarProperty Name="Inward_Qty" ColumnName="Inward_Qty" />
+                <ScalarProperty Name="Op_Inward_Qty" ColumnName="Op_Inward_Qty" />
+                <ScalarProperty Name="Adj_Qty" ColumnName="Adj_Qty" />
+                <ScalarProperty Name="Sales_Qty" ColumnName="Sales_Qty" />
+                <ScalarProperty Name="Rtl_Prc" ColumnName="Rtl_Prc" />
+                <ScalarProperty Name="Sales_Amt" ColumnName="Sales_Amt" />
+                <ScalarProperty Name="Disc_Per_Item" ColumnName="Disc_Per_Item" />
+                <ScalarProperty Name="Disc_Amt" ColumnName="Disc_Amt" />
+                <ScalarProperty Name="Net_Rtl_Prc" ColumnName="Net_Rtl_Prc" />
+                <ScalarProperty Name="Net_Sales_Amt" ColumnName="Net_Sales_Amt" />
+                <ScalarProperty Name="Cl_Qty" ColumnName="Cl_Qty" />
+                <ScalarProperty Name="Cl_Amt" ColumnName="Cl_Amt" />
+                <ScalarProperty Name="Itm_Name" ColumnName="Itm_Name" />
+                <ScalarProperty Name="Itm_shortname" ColumnName="Itm_shortname" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Category_ShortName" ColumnName="Category_ShortName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="stpBarcodeItem" FunctionName="AIMS_DBModel.Store.stpBarcodeItem">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.stpBarcodeItem_Result">
+                <ScalarProperty Name="itm_code" ColumnName="itm_code" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="rtl_prc" ColumnName="rtl_prc" />
+                <ScalarProperty Name="disc_amt" ColumnName="disc_amt" />
+                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+                <ScalarProperty Name="ItemBarcode" ColumnName="ItemBarcode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="stpFetchItemCategory" FunctionName="AIMS_DBModel.Store.stpFetchItemCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.stpFetchItemCategory_Result">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="stpFetchTicket" FunctionName="AIMS_DBModel.Store.stpFetchTicket">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.stpFetchTicket_Result">
+                <ScalarProperty Name="TranId" ColumnName="TranId" />
+                <ScalarProperty Name="tran_seq" ColumnName="tran_seq" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemQty" ColumnName="ItemQty" />
+                <ScalarProperty Name="Rtl_Price" ColumnName="Rtl_Price" />
+                <ScalarProperty Name="Disc_Amt" ColumnName="Disc_Amt" />
+                <ScalarProperty Name="Sal_Prc" ColumnName="Sal_Prc" />
+                <ScalarProperty Name="Bill_Amt" ColumnName="Bill_Amt" />
+                <ScalarProperty Name="Paid_Amt" ColumnName="Paid_Amt" />
+                <ScalarProperty Name="Change_Amt" ColumnName="Change_Amt" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="DtaDat" ColumnName="DtaDat" />
+                <ScalarProperty Name="Grp" ColumnName="Grp" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="stpFetchTicketList" FunctionName="AIMS_DBModel.Store.stpFetchTicketList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.stpFetchTicketList_Result">
+                <ScalarProperty Name="tran_id" ColumnName="tran_id" />
+                <ScalarProperty Name="Tkt_Amt" ColumnName="Tkt_Amt" />
+                <ScalarProperty Name="Tkt_Qty" ColumnName="Tkt_Qty" />
+                <ScalarProperty Name="paid_amt" ColumnName="paid_amt" />
+                <ScalarProperty Name="Tkt_DiscAmt" ColumnName="Tkt_DiscAmt" />
+                <ScalarProperty Name="change_amt" ColumnName="change_amt" />
+                <ScalarProperty Name="ter_id" ColumnName="ter_id" />
+                <ScalarProperty Name="dtadat" ColumnName="dtadat" />
+                <ScalarProperty Name="dtatim" ColumnName="dtatim" />
+                <ScalarProperty Name="dtausr" ColumnName="dtausr" />
+                <ScalarProperty Name="Cancelled" ColumnName="Cancelled" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="stpGetDenomsBreakUp" FunctionName="AIMS_DBModel.Store.stpGetDenomsBreakUp" />
+          <FunctionImportMapping FunctionImportName="stpImportFromMdb2Sql" FunctionName="AIMS_DBModel.Store.stpImportFromMdb2Sql" />
+          <FunctionImportMapping FunctionImportName="stpImportFromMdb2Sql_Saltrn" FunctionName="AIMS_DBModel.Store.stpImportFromMdb2Sql_Saltrn" />
+          <FunctionImportMapping FunctionImportName="stpItemKeybrdList" FunctionName="AIMS_DBModel.Store.stpItemKeybrdList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.stpItemKeybrdList_Result">
+                <ScalarProperty Name="seq" ColumnName="seq" />
+                <ScalarProperty Name="itm_code" ColumnName="itm_code" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="rtl_prc" ColumnName="rtl_prc" />
+                <ScalarProperty Name="disc_amt" ColumnName="disc_amt" />
+                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="stpOPCL" FunctionName="AIMS_DBModel.Store.stpOPCL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AIMS_DBModel.stpOPCL_Result">
+                <ScalarProperty Name="Itm_Code" ColumnName="Itm_Code" />
+                <ScalarProperty Name="Op_Qty" ColumnName="Op_Qty" />
+                <ScalarProperty Name="Inward_Qty" ColumnName="Inward_Qty" />
+                <ScalarProperty Name="Op_Inward_Qty" ColumnName="Op_Inward_Qty" />
+                <ScalarProperty Name="Adj_Qty" ColumnName="Adj_Qty" />
+                <ScalarProperty Name="Sales_Qty" ColumnName="Sales_Qty" />
+                <ScalarProperty Name="Rtl_Prc" ColumnName="Rtl_Prc" />
+                <ScalarProperty Name="Sales_Amt" ColumnName="Sales_Amt" />
+                <ScalarProperty Name="Disc_Per_Item" ColumnName="Disc_Per_Item" />
+                <ScalarProperty Name="Disc_Amt" ColumnName="Disc_Amt" />
+                <ScalarProperty Name="Net_Rtl_Prc" ColumnName="Net_Rtl_Prc" />
+                <ScalarProperty Name="Net_Sales_Amt" ColumnName="Net_Sales_Amt" />
+                <ScalarProperty Name="Cl_Qty" ColumnName="Cl_Qty" />
+                <ScalarProperty Name="Cl_Amt" ColumnName="Cl_Amt" />
+                <ScalarProperty Name="Itm_Name" ColumnName="Itm_Name" />
+                <ScalarProperty Name="Itm_shortname" ColumnName="Itm_shortname" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Category_ShortName" ColumnName="Category_ShortName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

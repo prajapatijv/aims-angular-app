@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Source/AIMS.Api/packages
+/Source/AIMS.Api/AIMS.API/bin/*
+/Source/AIMS.Api/AIMS.API/obj/Debug
