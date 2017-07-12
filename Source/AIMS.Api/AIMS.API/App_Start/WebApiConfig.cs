@@ -10,6 +10,8 @@ namespace AIMS.API
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.EnableCors();
+
             config.Formatters.Remove(config.Formatters.XmlFormatter);
 
             // Web API routes
