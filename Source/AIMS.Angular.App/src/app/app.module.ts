@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule,MdTableModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './navmenu/navmenu.component';
@@ -18,7 +19,9 @@ import { CategoriesComponent } from './category/categories.component';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     MaterialModule,
+    MdTableModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
         { path: '', redirectTo: 'home', pathMatch: 'full' },

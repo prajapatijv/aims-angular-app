@@ -1,60 +1,34 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
+//import { MdTableModule } from '@angular/material';
 import {DataSource} from '@angular/cdk';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/merge';
+//import 'rxjs/add/operator/startWith';
+//import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';
-
-    //http://localhost:3871/api/categories
 
 @Component({
   selector :'categories',
   styleUrls: ['categories.component.css'],
-  templateUrl: './categories.component.html'  
+  templateUrl: './categories.component.html',
 })
 export class CategoriesComponent {
-  displayedColumns = ['userId', 'userName', 'progress', 'color'];
-  //exampleDatabase = new ExampleDatabase();
-  dataSource: ExampleDataSource | null;
+  dataSource: Observable<CategoryModel>;
 
-  @ViewChild('filter') filter: ElementRef;
+  constructor(private http:Http) {
+  }
 
   ngOnInit() {
-    //this.dataSource =  new ExampleDataSource(this.exampleDatabase);
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-        .debounceTime(150)
-        .distinctUntilChanged()
-        .subscribe(() => {
-          if (!this.dataSource) { return; }
-          this.dataSource.filter = this.filter.nativeElement.value;
-        });
-  }
+    this.dataSource = 
+        this.http.get('http://localhost:8085/api/categories')
+        .map(response => response.json());
+    }
 }
 
 
-export interface UserData {
-  id: string;
+export interface CategoryModel {
+  code: number;
   name: string;
-  progress: string;
-  color: string;
 }
 
-export class ExampleDataSource extends DataSource<any> {
-  _filterChange = new BehaviorSubject('');
-  get filter(): string { return this._filterChange.value; }
-  set filter(filter: string) { this._filterChange.next(filter); }
-
- constructor() {
-    super();
-  }
-
-  connect(): Observable<UserData[]> {
-    return null;
-  }
-  
-  disconnect() {}
-}
