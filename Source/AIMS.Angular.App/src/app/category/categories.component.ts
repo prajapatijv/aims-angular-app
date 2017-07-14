@@ -15,6 +15,7 @@ import 'rxjs/add/operator/map';
   templateUrl: './categories.component.html',
 })
 export class CategoriesComponent {
+  displayedColumns = ['code', 'name'];
   dataSource: CategoryDataSource | null;
 
   constructor(private http:Http) {
