@@ -21,13 +21,11 @@ export class CategoriesComponent {
   }
 
   ngOnInit() {
-    this.dataSource = new CategoryDataSource();
-    
       this.http
         .get('http://localhost:8085/api/categories')
         .map(response => response.json())
         .subscribe(
-            result => this.dataSource = result,
+            result => this.dataSource = new CategoryDataSource(result),
             error => console.log(error)
         );
     }
@@ -41,4 +39,10 @@ export interface CategoryModel {
 export class CategoryDataSource {
    dataChange: BehaviorSubject<CategoryModel[]> = new BehaviorSubject<CategoryModel[]>([]);
    get data() : CategoryModel[] {return this.dataChange.value; }
+
+   constructor(items) {
+      items.forEach(item => {
+        this.dataChange.next(item);
+      });
+   }
 }
