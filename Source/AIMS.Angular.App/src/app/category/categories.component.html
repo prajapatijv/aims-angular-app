@@ -1,15 +1,8 @@
-<!--<div class="categories-container">
+<div class="categories-container">
    <md-table #table [dataSource]="dataSource">
-    <ng-container cdkColumnDef="userId">
+    <ng-container cdkColumnDef="code">
       <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.id}} </md-cell>
+      <md-cell *cdkCellDef="let row"> {{row.code}} </md-cell>
     </ng-container>
-
   </md-table>
-</div>-->
-<h1>test</h1>
-<ul>
-  <li *ngFor="let book of dataSource | async" >
-  <span> test</span> 
-  </li>
-</ul> 
+</div>

@@ -14,15 +14,19 @@ import 'rxjs/add/operator/map';
   templateUrl: './categories.component.html',
 })
 export class CategoriesComponent {
-  dataSource: Observable<CategoryModel>;
+  dataSource: Array<CategoryModel>;
 
   constructor(private http:Http) {
   }
 
   ngOnInit() {
-    this.dataSource = 
-        this.http.get('http://localhost:8085/api/categories')
-        .map(response => response.json());
+      this.http
+        .get('http://localhost:8085/api/categories')
+        .map(response => response.json())
+        .subscribe(
+            result => this.dataSource = result,
+            error => console.log(error)
+        );
     }
 }
 
