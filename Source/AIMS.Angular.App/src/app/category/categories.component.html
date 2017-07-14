@@ -1,8 +1,14 @@
 <div class="categories-container">
+  <div class="example-header">
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filter placeholder="Filter users">
+    </md-input-container>
+  </div>
+
    <md-table #table [dataSource]="dataSource">
-    <ng-container cdkColumnDef="code">
+    <ng-container cdkColumnDef="name">
       <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.code}} </md-cell>
+      <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
     </ng-container>
   </md-table>
 </div>
