@@ -1,10 +1,9 @@
-//import {Component, ElementRef, ViewChild} from '@angular/core';
 import {Component} from '@angular/core';
 //import { MdTableModule } from '@angular/material';
 import {DataSource} from '@angular/cdk';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import {Http} from '@angular/http';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
@@ -26,7 +25,7 @@ export class CategoriesComponent {
         .get('http://localhost:8085/api/categories')
         .map(response => response.json())
         .subscribe(
-            result => this.dataSource = new CategoryDataSource(result),
+            result => this.dataSource = new CategoryDataSource(new CategoryDatabase(result)),
             error => console.log(error)
         );
     }
@@ -37,7 +36,8 @@ export interface CategoryModel {
   name: string;
 }
 
-export class CategoryDataSource {
+export class CategoryDatabase {
+  debugger;
    dataChange: BehaviorSubject<CategoryModel[]> = new BehaviorSubject<CategoryModel[]>([]);
    get data() : CategoryModel[] {return this.dataChange.value; }
 
@@ -46,4 +46,17 @@ export class CategoryDataSource {
         this.dataChange.next(item);
       });
    }
+}
+
+export class CategoryDataSource extends DataSource<any> {
+  constructor(private _exampleDatabase: CategoryDatabase) {
+    super();
+  }
+
+   /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<CategoryModel[]> {
+    return this._exampleDatabase.dataChange;
+  }
+
+  disconnect() {} 
 }
