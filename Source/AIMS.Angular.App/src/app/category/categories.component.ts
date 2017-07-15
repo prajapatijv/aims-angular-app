@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
   templateUrl: './categories.component.html',
 })
 export class CategoriesComponent {
-  displayedColumns = ['code','name'];
+  displayedColumns = ['code','name', 'dtadat'];
   dataSource: CategoryDataSource | null;
 
   constructor(private http:Http) {

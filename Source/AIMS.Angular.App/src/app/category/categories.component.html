@@ -14,6 +14,10 @@
       <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
       <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
     </ng-container>
+    <ng-container cdkColumnDef="dtadat">
+      <md-header-cell *cdkHeaderCellDef> Date </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.dtadat}} </md-cell>
+    </ng-container>
 
     <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
     <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>  
