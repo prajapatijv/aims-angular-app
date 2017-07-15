@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
   templateUrl: './categories.component.html',
 })
 export class CategoriesComponent {
-  displayedColumns = ['code'];
+  displayedColumns = ['code','name'];
   dataSource: CategoryDataSource | null;
 
   constructor(private http:Http) {
@@ -37,11 +37,13 @@ export interface CategoryModel {
 
 export class CategoryDatabase {
    dataChange: BehaviorSubject<CategoryModel[]> = new BehaviorSubject<CategoryModel[]>([]);
-   get data() : CategoryModel[] { console.log(this.dataChange.value); return this.dataChange.value; }
+   get data() : CategoryModel[] { return this.dataChange.value; }
 
    constructor(items) {
       items.forEach(item => {
-        this.dataChange.next(item);
+        const copiedData = this.data.slice();
+        copiedData.push(item);        
+        this.dataChange.next(copiedData);
       });
    }
 }
