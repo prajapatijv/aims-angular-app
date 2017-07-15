@@ -1,5 +1,4 @@
-import {Component} from '@angular/core';
-//import { MdTableModule } from '@angular/material';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {DataSource} from '@angular/cdk';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
@@ -14,7 +13,7 @@ import 'rxjs/add/operator/map';
   templateUrl: './categories.component.html',
 })
 export class CategoriesComponent {
-  displayedColumns = ['code', 'name'];
+  displayedColumns = ['code'];
   dataSource: CategoryDataSource | null;
 
   constructor(private http:Http) {
@@ -37,9 +36,8 @@ export interface CategoryModel {
 }
 
 export class CategoryDatabase {
-  debugger;
    dataChange: BehaviorSubject<CategoryModel[]> = new BehaviorSubject<CategoryModel[]>([]);
-   get data() : CategoryModel[] {return this.dataChange.value; }
+   get data() : CategoryModel[] { console.log(this.dataChange.value); return this.dataChange.value; }
 
    constructor(items) {
       items.forEach(item => {

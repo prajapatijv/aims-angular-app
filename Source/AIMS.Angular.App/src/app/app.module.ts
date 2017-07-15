@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CdkTableModule } from '@angular/cdk'; 
 import { RouterModule } from '@angular/router';
-import { MaterialModule,MdTableModule } from '@angular/material';
+import { MaterialModule, MdTableModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 
@@ -22,6 +23,7 @@ import { CategoriesComponent } from './category/categories.component';
     HttpModule,
     MaterialModule,
     MdTableModule,
+    CdkTableModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
         { path: '', redirectTo: 'home', pathMatch: 'full' },
