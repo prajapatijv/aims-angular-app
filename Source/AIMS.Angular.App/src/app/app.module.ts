@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './navmenu/navmenu.component';
 import { HomeComponent } from './home/home.component';
 import { CategoriesComponent } from './category/categories.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CategoryComponent    
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { CategoriesComponent } from './category/categories.component';
     RouterModule.forRoot([
         { path: '', redirectTo: 'home', pathMatch: 'full' },
         { path: 'home', component: HomeComponent },
+        { path: 'categories/:id', component: CategoryComponent },
         { path: 'categories', component: CategoriesComponent },
         { path: '**', redirectTo: 'home' }
     ])
